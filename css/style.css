@@ -206,13 +206,6 @@ body {
 
 .main-title span{
   background-image: var(--linear-gradient-with-degrees);
-  border: 3px solid;
-  border-image-slice: 1;
-  border-image-source: var(--linear-gradient-with-degrees);
-  border-left: 0;
-  border-right: 0;
-  border-top: 0;
-  line-height: 2rem;
 }
 
 .divisions{
