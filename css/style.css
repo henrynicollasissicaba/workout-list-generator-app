@@ -1,0 +1,500 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin */
+* {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+  text-decoration: none;
+  border: 0;
+  outline: none;
+  scroll-behavior: smooth;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+}
+
+html,
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Set core body defaults */
+body {
+  text-rendering: optimizeSpeed;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img,
+picture,
+svg {
+  max-width: 100%;
+  display: block;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+:root{
+  /* NEUTRAL COLORS */
+  --white: #fff; 
+  --black: #000;
+
+  /* MAIN DEGREES FOR LINEAR-GRADIENT COLORS */
+  --degrees: -225deg;
+
+  /* MAIN LINEAR-GRADIENTS */
+  --linear-gradient-main: #231557 0%, #44107A 29%, #FF1361 67%, #FFF800 100%;
+  --linear-gradient-for-animation: #231557, #44107A, #FF1361, #FFF800, #FF1361, #44107A, #231557;
+  --linear-gradient-with-degrees: linear-gradient(var(--degrees), var(--linear-gradient-main));
+  --linear-gradient-animation : linear-gradient(var(--degrees), var(--linear-gradient-for-animation));
+
+  /* OTHER COLORS */
+  --first-color-of-gradient: #231557;
+  --red: #ff2121;
+  --green: #21ff37;
+  --black-800: #000000a4;
+  
+  /* BOX SHADOWS */
+  --box-shadow-main:  rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, 
+                      rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, 
+                      rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+
+  --box-shadow-800: 0 0 0 2px var(--black-800), 4px 4px 0 0 var(--black-800);
+  --box-shadow-red: 0 0 0 2px var(--red), 4px 4px 0 0 var(--red);
+  --box-shadow-green: 0 0 0 2px var(--green), 4px 4px 0 0 var(--green);
+}
+
+/* TEMPORARY ELEMENT */
+h2{
+  text-align: center;
+  font-size: 2rem;
+  color: #ffffff;
+  margin-top: 4rem;
+}
+
+body {
+  background-color: #212121;
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+.body-container {
+  --max-width: 890px;
+  --padding: 0.75rem;
+
+  width: min(var(--max-width), 100% - var(--padding) * 2);
+  margin-inline: auto;
+  padding-bottom: 1rem;
+  flex: 1 1 0;
+}
+
+.header{
+  position: fixed;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+  top: 0;
+  padding: .5rem .825rem;
+  z-index: 10000;
+  background-color: var(--white);
+  box-shadow: var(--box-shadow-main);
+}
+
+.header .btn{
+  cursor: pointer;
+  display: none;
+  border: none;
+  background: transparent;
+}
+
+.header #menu,
+.header img{
+  width: 2rem;
+  height: 2rem;
+}
+
+.header #menu{
+  padding-top: .3rem;
+}
+
+.nav{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.header .close-menu{
+  display: none;
+}
+
+.nav a{
+  padding: .5rem;
+  color: var(--black);
+  font-weight: 500;
+}
+
+.nav a.active,
+.main-title span,
+.footer p span{
+  color: var(--black);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.nav a.active{
+  --degrees: 200deg;
+
+  background-image: linear-gradient(var(--degrees), var(--linear-gradient-main));
+}
+
+.main{
+  margin-top: 4.5rem;
+  padding: .5rem;
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+  border-radius: 5px;
+  background-color: var(--white);
+  box-shadow: var(--box-shadow-main);
+}
+
+.main .main-title{
+  font-size: clamp(1.25rem, 6vw, 2rem);
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.main p{
+  display: block;
+  margin-inline: auto;
+  max-width: 300px;
+  font-size: 14px;
+  font-style: italic;
+  color: #3d3d3d;
+}
+
+.main-title span{
+  background-image: var(--linear-gradient-with-degrees);
+  border: 3px solid;
+  border-image-slice: 1;
+  border-image-source: var(--linear-gradient-with-degrees);
+  border-left: 0;
+  border-right: 0;
+  border-top: 0;
+  line-height: 2rem;
+}
+
+.divisions{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding: .625rem;
+  border-radius: 5px;
+  background-color: var(--white);
+  box-shadow: var(--box-shadow-main);
+}
+
+.division-box{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+}
+
+.division-box label{
+  cursor: pointer;
+  width: 100%;
+  padding: 3px;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  color: var(--white);
+  background-color: #000000a4;
+}
+
+.division-box label::before{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 400%;
+  height: 100%;
+  background-size: 25% 100%;
+  animation: animate .95s linear infinite;
+  animation-play-state: paused;
+  translate: -5% 0%;
+  transition: translate 0.25s ease-out;
+}
+
+.division-box input:is(:checked) + label::before{
+  animation-play-state: running;
+  transition-duration: 0.95s;
+  translate: 0% 0%;
+  background-image: var(--linear-gradient-animation);
+}
+
+.division-box label span{
+  display: block;
+  width: 100%;
+  padding: .5rem;
+  font-weight: 700;
+  background-color: #212121;
+}
+
+.division-box input[type="radio"]{
+  position: absolute;
+  appearance: none;
+  z-index: 10;
+
+  width: 1.5rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  margin-top: .8rem;
+  margin-right: .8rem;
+  border: 4px solid var(--black);
+  background-color: var(--white);
+}
+
+.division-box input[type="radio"]:checked{
+  background-image: radial-gradient(var(--first-color-of-gradient) 35%, var(--white) 45%);
+}
+
+@keyframes animate {
+  to {
+    transform: translateX(-25%);
+  }
+}
+
+.btns{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: .5rem;
+}
+
+.button {
+  cursor: pointer;
+  position: relative;
+  margin-top: 1rem;
+  padding: 10px 22px;
+  border: none;
+  border-radius: 6px;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--white);
+  background-image: var(--linear-gradient-with-degrees);
+  transition: all 0.2s ease;
+}
+
+.button:active {
+  transform: scale(0.96);
+}
+
+.workout-section{
+  margin-top: 1rem;
+  padding: .625rem;
+  border-radius: 5px;
+  background-color: var(--white);
+  box-shadow: var(--box-shadow-main);
+}
+
+.workout-section .workoutExerciseAndReps{
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+.workoutExerciseAndReps h3{
+  padding: .3rem .5rem;
+  font-weight: 500;
+  box-shadow: var(--box-shadow-800);
+}
+
+.workoutExerciseAndReps h3:first-of-type,
+.workoutListExercise label{
+  width: 80%;
+}
+
+.workoutExerciseAndReps h3:last-of-type,
+.workoutListExercise p{
+  width: 20%;
+}
+
+.workout-section .subtitle{
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: .25rem;
+  font-size: 12px;
+}
+
+.subtitle .info{
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.subtitle .undone,
+.subtitle .done{
+  display: flex;
+  align-items: center;
+  gap: .25rem;
+}
+
+.subtitle .done span,
+.subtitle .undone span{
+  width: 10px;
+  aspect-ratio: 1;
+  border: 1px solid var(--black);
+}
+
+.subtitle .done span{
+  background-color: var(--green);
+}
+
+.subtitle .undone span{
+  background-color: var(--red);
+}
+
+.workout-section .workoutList{
+  margin-top: 1.875rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.workoutListExercise label input[type="checkbox"]{
+  display: none;
+}
+
+.workoutList .workoutListExercise{
+  display: flex;
+  gap: .625rem;
+}
+
+.workoutListExercise label{
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  gap: .625rem;
+  font-size: 14px;
+}
+
+.workoutListExercise label div{
+  width: 100%;
+  padding: .3rem .5rem;
+  box-shadow: var(--box-shadow-red);
+}
+
+.workoutListExercise label div.checked{
+  box-shadow: var(--box-shadow-green);
+}
+
+.workoutListExercise p{
+  padding: .3rem .5rem;
+  font-size: 14px;
+  box-shadow: var(--box-shadow-800);
+}
+
+.footer{
+  padding: 1rem .5rem;
+  font-size: 10px;
+  background-color: var(--white);
+  box-shadow: var(--box-shadow-main);
+}
+
+.footer p{
+  display: block;
+  max-width: 400px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.footer p span{
+  background-image: var(--linear-gradient-with-degrees);
+  font-weight: 500;
+}
+
+@media(max-width: 720px){
+  .header{
+    justify-content: space-between;
+  }
+
+  .header .btn{
+    display: block;
+  }
+
+  .nav{
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: normal;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 6rem 0 0 1rem;
+    width: 70%;
+    min-height: 100vh;
+    font-size: 1.25rem;
+    background-color: var(--white);
+    transform: translate(-700px, 0);
+    transition: 150ms ease-in-out;
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, 
+                rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, 
+                rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  }
+
+  .nav.active{
+    transform: translate(0, 0);
+  }
+
+  .nav.active::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    margin-left: 100%;
+    width: 100%;
+    height: 100%;
+    background-color: #0000006b;
+  }
+
+  .nav.active ~ .close-menu{
+    cursor: pointer;
+    position: absolute;
+    display: block;
+    background: transparent;
+    font-size: 2rem;
+    top: .835rem;
+  }
+}

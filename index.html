@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Workout List Generator APP</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="./img/favcon-logo.png" type="image/x-icon">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <header class="header">
+        <button class="btn">
+            <ion-icon name="menu-sharp" id="menu"></ion-icon>
+        </button>
+        <img src="./img/barbell-sharp.svg" alt="logo-app">
+        <nav class="nav">
+            <a href="index.html" class="active">Gerador de Treino Aleatório</a>
+            <a href="science-based-training.html">Treino Baseado na Ciência</a>
+            <a href="abcde-training.html">Treino ABCDE</a>
+        </nav>
+        <button class="close-menu">
+            <ion-icon name="close-sharp" id="close-menu"></ion-icon>
+        </button>
+    </header>
+
+    <section class="body-container">
+        <main class="main">
+            <h1 class="main-title">
+                Gerador de <span>Treino Aleatório.</span>
+            </h1>
+            <p>Selecione abaixo o treino que deseja gerar aleatoriamente.</p>
+        </main>
+
+        <section class="divisions">
+            <div class="division-box">
+                <input type="radio" name="exercise" value="chest-triceps" id="chest-triceps" checked>
+                <label for="chest-triceps">
+                    <span>Peito e Tríceps</span>
+                </label>
+            </div>
+            <div class="division-box">
+                <input type="radio" name="exercise" value="back-biceps" id="back-biceps">
+                <label for="back-biceps">
+                    <span>Costas e Bíceps</span>
+                </label>
+            </div>
+            <div class="division-box">
+                <input type="radio" name="exercise" value="leg-shoulders" id="leg-shoulders">
+                <label for="leg-shoulders">
+                    <span>Pernas e Ombros</span>
+                </label>
+            </div>
+        </section>
+
+        <div class="btns">
+            <button class="button" id="generateBtn">Gerar treino</button>
+            <button class="button" id="clearBtn">Limpar treino</button>
+        </div>
+
+        <section class="workout-section">
+            <div class="workoutExerciseAndReps">
+                <h3>Exercícios</h3>
+                <h3>Reps</h3>
+            </div>
+
+            <div class="subtitle">
+                <div class="info">
+                    <h1>Clique no nome do exercício para:</h1>
+                </div>
+                <div class="undone">
+                    <span></span>
+                    <p>Exercício não realizado</p>
+                </div>
+                <div class="done">
+                    <span></span>
+                    <p>Exercício realizado</p>
+                </div>
+            </div>
+
+            <ul class="workoutList"></ul>
+        </section>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; Copyright @ 2023 By <span>Henry Nicollas Issicaba Neves</span> | All Rights Reserved.</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/exercises.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+</body>
+</html>
