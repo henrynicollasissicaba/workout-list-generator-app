@@ -63,15 +63,15 @@ svg {
 
 :root{
   /* NEUTRAL COLORS */
-  --white: #fff; 
+  --white: #FCFAFB; 
   --black: #000;
 
   /* MAIN DEGREES FOR LINEAR-GRADIENT COLORS */
   --degrees: -225deg;
 
   /* MAIN LINEAR-GRADIENTS */
-  --linear-gradient-main: #231557 0%, #44107A 29%, #FF1361 67%, #FFF800 100%;
-  --linear-gradient-for-animation: #231557, #44107A, #FF1361, #FFF800, #FF1361, #44107A, #231557;
+  --linear-gradient-main: #2E3192, #1BFFFF 100%;
+  --linear-gradient-for-animation: #2E3192, #2E3192, #1BFFFF, #1BFFFF, #2E3192, #2E3192;
   --linear-gradient-with-degrees: linear-gradient(var(--degrees), var(--linear-gradient-main));
   --linear-gradient-animation : linear-gradient(var(--degrees), var(--linear-gradient-for-animation));
 
@@ -100,7 +100,7 @@ h2{
 }
 
 body {
-  background-color: #212121;
+  background-color: #1e1e1e;
   font-family: "Poppins", sans-serif;
   display: flex;
   flex-direction: column;
