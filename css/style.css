@@ -245,15 +245,15 @@ body {
   width: 400%;
   height: 100%;
   background-size: 25% 100%;
-  animation: animate .95s linear infinite;
+  animation: animate 1.25s linear infinite;
   animation-play-state: paused;
   translate: -5% 0%;
-  transition: translate 0.25s ease-out;
+  transition: translate 2s ease-out;
 }
 
 .division-box input:is(:checked) + label::before{
   animation-play-state: running;
-  transition-duration: 0.95s;
+  transition-duration: 2s;
   translate: 0% 0%;
   background-image: var(--linear-gradient-animation);
 }
