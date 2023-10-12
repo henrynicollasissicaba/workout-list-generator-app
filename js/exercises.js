@@ -14,8 +14,9 @@ const chestExercises = [
 const tricepsExercises = [
   { exerciseName: "Tríceps corda cross alto", reps: "4x12", status: "undone" },
   { exerciseName: "Tríceps testa com barra", reps: "3x12", status: "undone" },
-  { exerciseName: "Tríceps francês unilateral", reps: "3x12", status: "undone" },
   { exerciseName: "Tríceps supinado cross alto", reps: "4x12", status: "undone" },
+  { exerciseName: "Tríceps francês", reps: "3x12", status: "undone" },
+  { exerciseName: "Tríceps francês unilateral", reps: "3x12", status: "undone" },
   { exerciseName: "Tríceps pronado cross alto", reps: "4x12", status: "undone" },
   { exerciseName: "Tríceps banco", reps: "3x12", status: "undone" },
   { exerciseName: "Barra Paralela", reps: "3x12", status: "undone" },
@@ -47,7 +48,7 @@ const bicepsExercises = [
 const legExercises = [
   { exerciseName: "Cadeira abdutora", reps: "3x12", status: "undone" },
   { exerciseName: "Cadeira adutora", reps: "3x12", status: "undone" },
-  { exerciseName: "Avanço com halteres", reps: "3x12", status: "undone" },
+  { exerciseName: "Avanço (halteres / smith)", reps: "3x12", status: "undone" },
   { exerciseName: "Levantamento terra", reps: "3x12", status: "undone" },
   { exerciseName: "Agachamento (livre / smith)", reps: "3x12", status: "undone" },
   { exerciseName: "Agachamento búlgaro", reps: "3x12", status: "undone" },

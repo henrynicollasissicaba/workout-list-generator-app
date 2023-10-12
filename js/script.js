@@ -44,6 +44,8 @@ generateWorkoutBtn.addEventListener("click", () => {
 clearBtn.addEventListener("click", () => {
   localStorage.clear();
   ul.innerHTML = "";
+
+  window.location.reload()
 });
 
 const displaySavedExercises = () => {

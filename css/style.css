@@ -381,10 +381,13 @@ body {
 }
 
 .workout-section .workoutList{
-  margin-top: 1.875rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
+}
+
+.workoutList .workoutListExercise:first-child{
+  margin-top: 1.875rem;
 }
 
 .workoutListExercise label input[type="checkbox"]{
