@@ -69,14 +69,24 @@ svg {
   /* MAIN DEGREES FOR LINEAR-GRADIENT COLORS */
   --degrees: -225deg;
 
+  /* MAIN COLORS */
+  --clr-primary-blue-800: #231557;
+  --clr-primary-blue-600: #2E3192;
+  --clr-primary-blue-200: #1BFFFF;
+
   /* MAIN LINEAR-GRADIENTS */
-  --linear-gradient-main: #2E3192, #1BFFFF 100%;
-  --linear-gradient-for-animation: #2E3192, #2E3192, #1BFFFF, #1BFFFF, #2E3192, #2E3192;
+  --linear-gradient-main: var(--clr-primary-blue-600), var(--clr-primary-blue-200);
+  --linear-gradient-for-animation:  var(--clr-primary-blue-600), 
+                                    var(--clr-primary-blue-600),
+                                    var(--clr-primary-blue-200),
+                                    var(--clr-primary-blue-200),
+                                    var(--clr-primary-blue-600),
+                                    var(--clr-primary-blue-600);
+
   --linear-gradient-with-degrees: linear-gradient(var(--degrees), var(--linear-gradient-main));
   --linear-gradient-animation : linear-gradient(var(--degrees), var(--linear-gradient-for-animation));
 
   /* OTHER COLORS */
-  --first-color-of-gradient: #231557;
   --red: #ff2121;
   --green: #21ff37;
   --black-800: #000000a4;
@@ -105,6 +115,8 @@ body {
   display: flex;
   flex-direction: column;
 }
+
+/* INDEX STYLE STARTS */
 
 .body-container {
   --max-width: 890px;
@@ -166,16 +178,16 @@ body {
 
 .nav a.active,
 .main-title span,
-.footer p span{
+.footer p span,
+.saved-list span{
   color: var(--black);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-.nav a.active{
-  --degrees: 200deg;
-
+.nav a.active,
+.saved-list span{
   background-image: linear-gradient(var(--degrees), var(--linear-gradient-main));
 }
 
@@ -198,7 +210,7 @@ body {
 .main p{
   display: block;
   margin-inline: auto;
-  max-width: 300px;
+  max-width: 400px;
   font-size: 14px;
   font-style: italic;
   color: #3d3d3d;
@@ -281,7 +293,7 @@ body {
 }
 
 .division-box input[type="radio"]:checked{
-  background-image: radial-gradient(var(--first-color-of-gradient) 35%, var(--white) 45%);
+  background-image: radial-gradient(var(--clr-primary-blue-800) 35%, var(--white) 45%);
 }
 
 @keyframes animate {
@@ -323,25 +335,33 @@ body {
   box-shadow: var(--box-shadow-main);
 }
 
-.workout-section .workoutExerciseAndReps{
+.workout-section .workoutExerciseAndReps,
+.customExerciseAndReps{
   display: flex;
   align-items: center;
   gap: .5rem;
 }
 
-.workoutExerciseAndReps h3{
+.workoutExerciseAndReps h3,
+.customExerciseAndReps h3{
   padding: .3rem .5rem;
   font-weight: 500;
   box-shadow: var(--box-shadow-800);
 }
 
 .workoutExerciseAndReps h3:first-of-type,
-.workoutListExercise label{
+.workoutListExercise label,
+.customExerciseAndReps h3:first-of-type,
+.customBox .customExercise,
+.box-exercises .saved-exercise-name{
   width: 80%;
 }
 
 .workoutExerciseAndReps h3:last-of-type,
-.workoutListExercise p{
+.workoutListExercise p,
+.customExerciseAndReps h3:last-of-type,
+.customBox .customReps,
+.box-exercises .saved-set-x-rep{
   width: 20%;
 }
 
@@ -423,6 +443,8 @@ body {
   box-shadow: var(--box-shadow-800);
 }
 
+/* INDEX STYLE ENDS */
+
 .footer{
   padding: 1rem .5rem;
   font-size: 10px;
@@ -442,7 +464,283 @@ body {
   font-weight: 500;
 }
 
-@media(max-width: 720px){
+/* CUSTOM TRAINING STYLE STARTS */
+
+.add-box{
+  background-color: var(--white);
+  margin-top: 4.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: .5rem;
+  padding: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.add-box h2,
+.add-box ion-icon{
+  color: var(--black-800);
+}
+
+.add-box h2{
+  margin-top: 0;
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.add-box ion-icon{
+  font-size: 1.5rem;
+  padding: 1rem;
+  border-radius: 50%;
+  border: 1px dashed var(--black-800);
+  cursor: pointer;
+}
+
+.popup-box{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  transition: all .2s ease;
+}
+
+.popup-box, .popup-box .popup{
+  opacity: 0;
+  pointer-events: none;
+  z-index: -1;
+}
+.popup-box.show, .popup-box .popup{
+  opacity: 1;
+  pointer-events: auto;
+  z-index: 2;
+}
+
+.popup-box .popup{
+  position: absolute;
+  max-width: 35rem;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.popup .content{
+  background-color: var(--white);
+  padding: 1rem 1.5rem;
+  margin: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.content header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.content header p{
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.content header ion-icon{
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+.content .inputs{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.inputs .row{
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.inputs input{
+  width: 100%;
+  padding: .5rem .825rem;
+  font-size: 14px;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, 
+              rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}
+
+.customExerciseBox{
+  background-color: var(--white);
+  margin-top: 1.5rem;
+  border-radius: 5px;
+  padding: .825rem .5rem;
+}
+
+.customList{
+  display: flex;
+  flex-direction: column;
+  gap: .625rem;
+}
+
+.customList .customBox{
+  display: flex;
+  font-size: 14px;
+  gap: .5rem;
+}
+
+.customList .customBox:first-child{
+  margin-top: 1.5rem;
+}
+
+.customBox .customExercise,
+.customBox .customReps,
+.box-exercises .saved-exercise-name,
+.box-exercises .saved-set-x-rep{
+  box-shadow: var(--box-shadow-800);
+  padding: .3rem .5rem;
+}
+
+.customBox .customExercise{
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+.customExercise button{
+  background: transparent;
+  display: flex;
+  align-items: center;
+  border: none;
+  cursor: pointer;
+}
+
+.customExercise button ion-icon{
+  font-size: 1rem;
+}
+
+.popup-saved-box{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  transition: all .2s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.popup-saved-box.show{
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.popup-saved-box .popup-confirm{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 25rem;
+  width: 100%;
+}
+
+.popup-confirm .popup-box-content{
+  background-color: var(--white);
+  padding: 1rem;
+  margin: .5rem;
+}
+
+.popup-confirm ion-icon{
+  display: block;
+  font-size: 1.5rem;
+  padding: .25rem;
+  cursor: pointer;
+  margin: -1rem -1rem 1rem auto;
+}
+
+.popup-confirm p:first-of-type{
+  font-size: 1.25rem;
+  text-align: center;
+  font-weight: 500;
+}
+
+.popup-confirm p:last-of-type{
+  font-size: 14px;
+  margin-top: 1rem;
+  text-align: center;
+  font-style: italic;
+}
+
+/* CUSTOM TRAINING STYLE ENDS */
+
+/* SAVED EXERCISES STYLE STARTS */
+
+.saved-list{
+  margin-top: 4.5rem;
+  background-color: var(--white);
+  padding: 1.5rem 1rem;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.saved-list span{
+  font-size: clamp(1rem, 6vw, 2rem);
+  font-weight: 500;
+}
+
+.saved-box{
+  display: flex;
+  flex-direction: column;
+  background-color: var(--white);
+  margin-top: 1.5rem;
+  gap: 1rem;
+  border-radius: 5px;
+}
+
+.saved-box .box{
+  padding: 0 .5rem 1rem .5rem;
+  margin: .75rem;
+  font-size: 14px;
+  box-shadow: 0 0 0 2px var(--clr-primary-blue-600), 4px 4px 0 0 var(--clr-primary-blue-800);
+}
+
+.box .box-title{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.box .box-title button{
+  background: transparent;
+  padding: .5rem;
+  cursor: pointer;
+}
+
+.box-content .box-exercises,
+.saved-box .box-content{
+  display: flex;
+  gap: .625rem;
+}
+
+.saved-box .box-content{
+  flex-direction: column;
+}
+
+/* SAVED EXERCISES STYLE ENDS */
+
+/* MEDIA QUERY */
+
+@media(max-width: 45em){
   .header{
     justify-content: space-between;
   }

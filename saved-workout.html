@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ABCDE Workout</title>
+    <title>Saved Workout List</title>
 
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="./css/style.css">
     <link rel="shortcut icon" href="./img/favcon-logo.png" type="image/x-icon">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,9 +19,9 @@
         </button>
         <img src="./img/barbell-sharp.svg" alt="logo-app">
         <nav class="nav">
-            <a href="index.html">Gerador de Treino Aleatório</a>
-            <a href="science-based-training.html">Treino Baseado na Ciência</a>
-            <a href="abcde-training.html" class="active">Treino ABCDE</a>
+            <a href="index.html">Gerador de Treino</a>
+            <a href="custom-training.html">Personalizar Treino</a>
+            <a href="saved-workout.html" class="active">Treinos Salvos</a>
         </nav>
         <button class="close-menu">
             <ion-icon name="close-sharp" id="close-menu"></ion-icon>
@@ -29,7 +29,11 @@
     </header>
 
     <section class="body-container">
-        <h2>Em desenvolvimento...</h2>
+        <div class="saved-list">
+            <span>Treinos Salvos</span>
+        </div>
+
+        <div class="saved-box"></div>
     </section>
 
     <footer class="footer">
@@ -37,6 +41,8 @@
     </footer>
 
     <script src="js/script.js"></script>
+    <script src="./js/custom-workout.js"></script>
+    <script src="./js/saved-exercises.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>

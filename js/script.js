@@ -1,11 +1,9 @@
 const menuIcon = document.querySelector("#menu");
 const closeMenuIcon = document.querySelector("#close-menu");
 const navBar = document.querySelector(".nav");
-
 const generateWorkoutBtn = document.querySelector("#generateBtn");
 const clearBtn = document.querySelector("#clearBtn");
-
-const ul = document.querySelector(".workoutList");
+const workouList = document.querySelector(".workoutList");
 
 let getExercise = JSON.parse(localStorage.getItem("savedExercises"));
 
@@ -18,6 +16,18 @@ closeMenuIcon.addEventListener("touchstart", () => {
 });
 
 generateWorkoutBtn.addEventListener("click", () => {
+  getRadioValue()
+  
+  localStorage.setItem("savedExercises", JSON.stringify(getExercise));
+
+  window.location.reload()
+
+  getCheckedRadio()
+  displayCheckedRadio()
+  displaySavedExercises();
+});
+
+const getRadioValue = () => {
   const getRadioExercise = document.querySelector('input[name="exercise"]:checked').value;
 
   switch (getRadioExercise) {
@@ -33,41 +43,29 @@ generateWorkoutBtn.addEventListener("click", () => {
       getExercise = concatExercises(getLegExercise(), getShouldersExercise());
       break;
   }
-  
-  localStorage.setItem("savedExercises", JSON.stringify(getExercise));
-
-  getCheckedRadio()
-  displayCheckedRadio()
-  displaySavedExercises();
-});
+}
 
 clearBtn.addEventListener("click", () => {
-  localStorage.clear();
-  ul.innerHTML = "";
+  localStorage.removeItem("savedExercises");
+  localStorage.removeItem("exercise");
+  workouList.innerHTML = "";
 
   window.location.reload()
 });
 
 const displaySavedExercises = () => {
-  let li = "";
+  const list = Array.from(getExercise || []).map((exercise, index) => {
+    const doneExercise = exercise.status == "done" ? "checked" : "";
+    return `<li class="workoutListExercise">
+              <label for="${index}">
+                <input onclick="updateCheckboxStatus(this)" type="checkbox" name="workout-exercise" id="${index}">
+                <div class="${doneExercise}">${exercise.exerciseName}</div>
+              </label>
+              <p>${exercise.reps}</p>
+            </li>`;
+  }).join("");
 
-  if (!getExercise) {
-    getExercise = [];
-  } else {
-    getExercise.forEach((exercise, index) => {
-      let doneExercise = exercise.status == "done" ? "checked" : "";
-
-      li += `<li class="workoutListExercise">
-                <label for="${index}">
-                    <input onclick="updateCheckboxStatus(this)" type="checkbox" name="workout-exercise" id="${index}" ${doneExercise}>
-                    <div class="${doneExercise}">${exercise.exerciseName}</div>
-                </label>
-                <p>${exercise.reps}</p>
-                </li>`;
-    });
-  }
-
-  ul.innerHTML = li;
+  workouList.innerHTML = list;
 };
 
 const getCheckedRadio = () => {
@@ -113,10 +111,7 @@ const getIndexOfExercise = (array) => {
   return array[randomIndex];
 };
 
-const concatExercises = (firstExercise, secondExercise) => {
-  const arrayWithAllExercises = [...firstExercise, ...secondExercise];
-  return arrayWithAllExercises;
-};
+const concatExercises = (firstExercise, secondExercise) => [ ...firstExercise, ...secondExercise ];
 
 const getExercises = (exerciseList, maxNumberOfExercise) => {
   let sortedIndex = [];

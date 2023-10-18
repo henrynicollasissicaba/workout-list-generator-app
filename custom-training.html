@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customize Training</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="./img/favcon-logo.png" type="image/x-icon">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <button class="btn">
+            <ion-icon name="menu-sharp" id="menu"></ion-icon>
+        </button>
+        <img src="./img/barbell-sharp.svg" alt="logo-app">
+        <nav class="nav">
+            <a href="index.html">Gerador de Treino</a>
+            <a href="custom-training.html" class="active">Personalizar Treino</a>
+            <a href="saved-workout.html">Treinos Salvos</a>
+        </nav>
+        <button class="close-menu">
+            <ion-icon name="close-sharp" id="close-menu"></ion-icon>
+        </button>
+    </header>
+
+    <section class="body-container">
+        <section class="popup-box">
+            <div class="popup">
+                <div class="content">
+                    <header>
+                        <p>Adicionar um exercício</p>
+                        <ion-icon name="close-sharp" id="close-popup"></ion-icon>
+                    </header>
+
+                    <div class="inputs">
+                        <div class="row">
+                            <label for="name-exercise">Nome do exercício: </label>
+                            <input type="text" id="name-exercise" placeholder="Ex.: Supino">
+                        </div>
+                        <div class="row">
+                            <label for="set-x-rep">Séries X Repetições: </label>
+                            <input type="text" id="set-x-rep" placeholder="Ex.: 3x12">
+                        </div>
+                    </div>
+
+                    <button class="button" id="addBtn">Adicionar</button>
+                </div>
+            </div>
+        </section>
+        <section class="add-box">
+            <ion-icon name="add-outline"></ion-icon>
+            <h2>Adicionar exercício</h2>
+        </section>
+
+        <section class="customExerciseBox">
+            <div class="customExerciseAndReps">
+                <h3>Exercícios</h3>
+                <h3>Reps</h3>
+            </div>
+
+            <ul class="customList"></ul>
+        </section>
+        <div class="btns">
+            <button class="button" id="cleanCustomList">limpar lista</button>
+            <button class="button" id="saveList">Salvar treino</button>
+        </div>
+
+        <div class="popup-saved-box">
+            <div class="popup-confirm">
+                <div class="popup-box-content">
+                    <ion-icon name="close-sharp" id="close-popup-confirm"></ion-icon>
+                    <p>Exercícios salvos com sucesso!</p>
+                    <p>Abra a sessão "Treinos Salvos" para acessar os exercícios salvos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; Copyright @ 2023 By <span>Henry Nicollas Issicaba Neves</span> | All Rights Reserved.</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/custom-workout.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
