@@ -57,7 +57,6 @@ const displaySavedExercises = () => {
   const list = Array.from(getExercise || []).map((exercise, index) => {
     const doneExercise = exercise.status == "done" ? "checked" : "";
     return `<li class="workoutListExercise">
-            <ion-icon name="accessibility-outline"></ion-icon>
               <label for="${index}">
                 <input onclick="updateCheckboxStatus(this)" type="checkbox" name="workout-exercise" id="${index}">
                 <div class="${doneExercise}">${exercise.exerciseName}</div>

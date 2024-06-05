@@ -29,7 +29,6 @@ const showCustomExercises = () => {
     exercises.forEach((exercise, id) => {
         liTag += `<li class="customBox">
                     <div class="customExercise">
-                    <ion-icon name="accessibility-outline"></ion-icon>
                         <button onclick="deleteExercise(${id})">
                             <ion-icon name="trash-outline"></ion-icon>
                         </button>
