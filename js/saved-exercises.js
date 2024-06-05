@@ -10,6 +10,7 @@ const showSavedExercises = () => {
         internArray.forEach(exercise => {
             savedExercises += `<div class="box-exercises">
                         <div class="saved-exercise-name">
+                        <ion-icon name="accessibility-outline"></ion-icon>
                             <p>${exercise.exerciseName}</p>
                         </div>
                         <div class="saved-set-x-rep">
